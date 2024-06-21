@@ -7,6 +7,7 @@ import (
 	"os"
 	"runtime"
 	"sync"
+	"time"
 
 	"github.com/tarm/serial"
 	"github.com/wgbbiao/modbus"
@@ -28,10 +29,10 @@ func openUsb() {
 	config := serial.Config{
 		Name: "COM3",
 		// Name:  "/dev/ttyUSB0",
-		Baud:     9600,
-		StopBits: 1,
-		Parity:   serial.ParityNone,
-		// ReadTimeout: time.Second * 3,
+		Baud:        9600,
+		StopBits:    1,
+		Parity:      serial.ParityNone,
+		ReadTimeout: time.Second * 2,
 	}
 	USBs := []string{}
 	switch runtime.GOOS {
