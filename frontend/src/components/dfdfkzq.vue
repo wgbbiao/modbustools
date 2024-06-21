@@ -50,6 +50,7 @@ const test = async () => {
     addresses.value.push(i);
 
     var r = await DfddfTestAddress(i);
+    console.log(r);
     if (r.status == "error") {
       ElMessage.error(r.msg);
       break;

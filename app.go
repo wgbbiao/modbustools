@@ -106,7 +106,8 @@ func (a *App) DfddfTestAddress(address uint16) any {
 		return H{"status": "error", "msg": "usb打开失败"}
 	}
 
-	_, err := _client.ReadHoldingRegisters(byte(address), 0x0000, 1)
+	res, err := _client.ReadHoldingRegisters(byte(address), 0x0000, 1)
+	fmt.Println(res, err)
 	if err != nil {
 		return H{"status": "error", "msg": err.Error()}
 	}
