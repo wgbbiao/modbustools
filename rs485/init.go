@@ -70,6 +70,7 @@ func openUsb() {
 		return
 	}
 	// client.DelayRtsBeforeSend = 100 * time.Millisecond
+	client.EnableLog()
 
 	// // 步进电机控制器读取间隔比较长
 	// client.DelayReadTimes[5] = 2
