@@ -69,11 +69,11 @@ func openUsb() {
 	if !UsbStatus {
 		return
 	}
-	client.DelayRtsBeforeSend = 100 * time.Millisecond
+	// client.DelayRtsBeforeSend = 100 * time.Millisecond
 
-	// 步进电机控制器读取间隔比较长
-	client.DelayReadTimes[5] = 2
-	client.DelayReadTimes[3] = 8
+	// // 步进电机控制器读取间隔比较长
+	// client.DelayReadTimes[5] = 2
+	// client.DelayReadTimes[3] = 8
 }
 
 func GetRs485Client() *modbus.Client {
