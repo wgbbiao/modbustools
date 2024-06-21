@@ -20,37 +20,47 @@
       </el-tag>
     </el-space>
 
-    <el-button type="primary" @click="test">扫描</el-button>
+    <el-button type="primary" @click="test" v-if="scanIng == false">扫描</el-button>
+    <el-button type="primary" @click="stop" v-if="scanIng">停止</el-button>
   </div>
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
-import { DfddfScanAddress } from "../../wailsjs/go/main/App";
+import { DfddfTestAddress } from "../../wailsjs/go/main/App";
 import { ElMessage } from "element-plus";
 
 const formData = reactive({
   old_address: 1,
   new_address: 0,
 });
+const scanIng = ref(false);
 
 const onSubmit = () => {
   console.log(formData.old_address, formData.new_address);
 };
-const addresses = ref([]);
+const addresses = ref<Number[]>([]);
 
-const test = () => {
+const test = async () => {
   addresses.value = [];
-  DfddfScanAddress().then((res) => {
-    if (res.status == "error") {
-      ElMessage.error(res.msg);
-      return;
+  scanIng.value = true;
+  for (var i = 1; i <= 99; i++) {
+    if (!scanIng.value) {
+      break;
     }
-    if (res.addresses.length == 0) {
-      ElMessage.error("没有扫描到设备");
-      return;
+    addresses.value.push(i);
+
+    var r = await DfddfTestAddress(i);
+    if (r.status == "error") {
+      ElMessage.error(r.msg);
+      break;
     }
-    addresses.value = res.addresses;
-  });
+    addresses.value.push(i);
+  }
+  scanIng.value = false;
+};
+
+const stop = () => {
+  scanIng.value = false;
 };
 function padZero(number: number, length: number) {
   var str = "" + number;
