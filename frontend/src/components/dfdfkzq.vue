@@ -54,7 +54,7 @@ const test = async () => {
     console.log(r);
     if (r.status == "error") {
       ElMessage.error(r.msg);
-      break;
+      continue;
     }
     addresses.value.push(i);
   }
