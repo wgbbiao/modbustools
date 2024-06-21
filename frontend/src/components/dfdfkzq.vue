@@ -36,7 +36,7 @@ const formData = reactive({
 const onSubmit = () => {
   console.log(formData.old_address, formData.new_address);
 };
-const addresses = ref([1, 2]);
+const addresses = ref([]);
 
 const test = () => {
   addresses.value = [];
