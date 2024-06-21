@@ -44,6 +44,7 @@ const test = async () => {
   addresses.value = [];
   scanIng.value = true;
   for (var i = 1; i <= 99; i++) {
+    console.log(i);
     if (!scanIng.value) {
       break;
     }
@@ -57,6 +58,7 @@ const test = async () => {
     }
     addresses.value.push(i);
   }
+  console.log("1sdfasdfasdf");
   scanIng.value = false;
 };
 
