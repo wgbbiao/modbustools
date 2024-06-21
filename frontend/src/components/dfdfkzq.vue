@@ -48,13 +48,13 @@ const test = async () => {
     if (!scanIng.value) {
       break;
     }
-    addresses.value.push(i);
-
     var r = await DfddfTestAddress(i);
     console.log(r);
     if (r.status == "error") {
       ElMessage.error(r.msg);
       continue;
+    } else {
+      ElMessage.success(r.msg);
     }
     addresses.value.push(i);
   }
