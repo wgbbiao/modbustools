@@ -50,6 +50,7 @@ const test = async () => {
     if (!scanIng.value) {
       break;
     }
+    scanIdex.value = i;
     var r = await DfddfTestAddress(i);
     console.log(r);
     if (r.status == "error") {
