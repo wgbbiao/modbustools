@@ -89,7 +89,8 @@ func (a *App) DfddfScanAddress() any {
 
 	var address uint16
 	for address = 1; address <= 99; address++ {
-		_, err := _client.ReadHoldingRegisters(byte(address), 0x0000, 1)
+		res, err := _client.ReadHoldingRegisters(byte(address), 0x0000, 1)
+		fmt.Println(res, err)
 		if err == nil {
 			addresses = append(addresses, address)
 		}
