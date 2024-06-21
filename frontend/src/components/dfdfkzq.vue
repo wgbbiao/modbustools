@@ -20,6 +20,8 @@
       </el-tag>
     </el-space>
 
+    <div>{{ scanIdex }}/99</div>
+
     <el-button type="primary" @click="test" v-if="scanIng == false">扫描</el-button>
     <el-button type="primary" @click="stop" v-if="scanIng">停止</el-button>
   </div>
@@ -39,7 +41,7 @@ const onSubmit = () => {
   console.log(formData.old_address, formData.new_address);
 };
 const addresses = ref<Number[]>([]);
-
+const scanIdex = ref(10);
 const test = async () => {
   addresses.value = [];
   scanIng.value = true;
