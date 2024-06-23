@@ -92,7 +92,7 @@ const testOne = async (i: number) => {
     ElMessage.error("址" + i + "失败：" + r.msg);
   } else {
     ElMessage.success(r.msg);
+    addresses.value.push(i);
   }
-  addresses.value.push(i);
 };
 </script>
