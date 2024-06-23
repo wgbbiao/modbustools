@@ -48,6 +48,7 @@ const test = async () => {
   for (var i = 1; i <= 99; i++) {
     console.log(i);
     if (!scanIng.value) {
+      console.log("stop");
       break;
     }
     scanIdex.value = i;

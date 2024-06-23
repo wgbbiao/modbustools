@@ -101,6 +101,9 @@ func (a *App) DfddfScanAddress() any {
 
 // 测试东阀蝶阀的一个地址
 func (a *App) DfddfTestAddress(address uint16) any {
+	rs485.Rs485Lock.Lock()
+	defer rs485.Rs485Lock.Unlock()
+
 	_client := rs485.GetRs485Client()
 	if _client == nil {
 		return H{"status": "error", "msg": "usb打开失败"}
