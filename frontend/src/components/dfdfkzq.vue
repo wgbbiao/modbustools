@@ -15,7 +15,7 @@
       </el-form-item>
     </el-form> -->
     <el-space wrap>
-      <el-tag size="large" effect="dark" v-for="i in 99" :type="addresses.indexOf(i) > -1 ? 'success' : 'info'">
+      <el-tag size="large" style="cursor: pointer" effect="dark" v-for="i in 99" :type="addresses.indexOf(i) > -1 ? 'success' : 'info'" @click="testOne(i)">
         {{ padZero(i, 2) }}
       </el-tag>
     </el-space>
@@ -46,6 +46,10 @@ const test = async () => {
   addresses.value = [];
   scanIng.value = true;
   for (var i = 1; i <= 99; i++) {
+    if (addresses.value.indexOf(i) > -1) {
+      // 删除
+      addresses.value = addresses.value.filter((item) => item != i);
+    }
     console.log(i);
     if (!scanIng.value) {
       console.log("stop");
@@ -76,4 +80,19 @@ function padZero(number: number, length: number) {
   }
   return str;
 }
+
+const testOne = async (i: number) => {
+  if (addresses.value.indexOf(i) > -1) {
+    // 删除
+    addresses.value = addresses.value.filter((item) => item != i);
+  }
+  var r = await DfddfTestAddress(i);
+  console.log(r);
+  if (r.status == "error") {
+    ElMessage.error("址" + i + "失败：" + r.msg);
+  } else {
+    ElMessage.success(r.msg);
+  }
+  addresses.value.push(i);
+};
 </script>
