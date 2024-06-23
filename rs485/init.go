@@ -32,7 +32,7 @@ func openUsb() {
 		Baud:        9600,
 		StopBits:    1,
 		Parity:      serial.ParityNone,
-		ReadTimeout: time.Second * 3,
+		ReadTimeout: time.Second * 1,
 	}
 	USBs := []string{}
 	switch runtime.GOOS {

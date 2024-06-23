@@ -41,7 +41,7 @@ const onSubmit = () => {
   console.log(formData.old_address, formData.new_address);
 };
 const addresses = ref<Number[]>([]);
-const scanIdex = ref(10);
+const scanIdex = ref(0);
 const test = async () => {
   addresses.value = [];
   scanIng.value = true;
@@ -55,7 +55,7 @@ const test = async () => {
     var r = await DfddfTestAddress(i);
     console.log(r);
     if (r.status == "error") {
-      ElMessage.error(r.msg);
+      ElMessage.error("址" + i + "失败：" + r.msg);
       continue;
     } else {
       ElMessage.success(r.msg);
